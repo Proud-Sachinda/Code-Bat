@@ -7,10 +7,10 @@ Generating a GUI interface to the generation of Gantt Chart schedules in Batch P
 
 The project is for Software Design course at the University Of the Witwatersrand, Johannesburg
 Our team members are the following:
-Proud Sachinda
-Thwani Sithole
-Ricardo Mudinyane
-Sandile Khendle
-Robel Berhanu
+Proud Sachinda,
+Thwani Sithole,
+Ricardo Mudinyane,
+Sandile Khendle,
+Robel Berhanu,
 Lenny Bokgoshi
 
