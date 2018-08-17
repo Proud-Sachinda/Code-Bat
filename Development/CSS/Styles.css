@@ -3,9 +3,16 @@ body{
     background-color:#97DCF4
 }
 
-#custom-button{
+#header, h1{
+    text-align: center;
+    border-bottom:5px;
+}
+
+
+
+#custom-button {
     padding: 10px;
-    color:white;
+    color:black;
     background-color: #0066ff;
     border : 1px solid #000;
     border-radius: 5px;
@@ -18,8 +25,10 @@ body{
 #custom-text{
     margin-left: 10px;
     font-family: sans-serif;
-    color: #aaa;
+    color: black;
 }
 h2 {
 text-shadow: 0 0 3px #0066ff;
 }
+
+
