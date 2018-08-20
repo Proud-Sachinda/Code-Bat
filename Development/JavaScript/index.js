@@ -36,16 +36,6 @@ $(document).ready(()=>{
             console.log(e.dataTransfer.files)
         },false)
 
-        // $('#dropZone').on('dragover', (e)=>{
-        //     e.stopPropagation();
-        //     e.preventDefault();
-        //     e.dataTransfer.dropEffect = 'copy'
-        // }, false);
-        // $('#dropZone').on('drop', (e)=>{
-        //     e.stopPropagation();
-        //     e.preventDefault();
-        //     alert(e.dataTransfer.files[0].name)
-        // },false)
 
 
 
