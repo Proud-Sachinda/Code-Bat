@@ -42,12 +42,6 @@ $(document).ready(()=>{
             //console.log(e.dataTransfer.files[0])
         },false)
 
-<<<<<<< HEAD
-=======
-
-
->>>>>>> 313eaba5e1a18f919e510ca11cb17bda1b78a41b
-
         //uploading the file for processing
         uploadButton.click(()=>{
             if (file){
