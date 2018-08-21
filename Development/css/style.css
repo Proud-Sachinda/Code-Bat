@@ -8,6 +8,69 @@ body{
     border-bottom:5px;
 }
 
+/*Heading Of The Page e.g Batch Processing*/
+.pageheader {
+  margin-bottom: 10px;
+  padding: 10px;
+  text-align: center;
+  background: #808080;
+  color: white;
+  font-size: 20px;
+  border : 1px solid #000;
+  border-radius: 30px;
+}
+
+
+/*Splits/Divides screen into two*/
+#slpit{
+  height: 100%;
+  width: 50%;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  overflow-x: hidden;
+  padding-top: 20px;
+}
+
+/* Control the left side */
+.left {
+  margin-left: 15px;
+  width: 30%;
+  float: left;
+  height: 100px;
+}
+
+/*Input Display*/
+.inputdisp{
+  margin-bottom: 20px;
+  text-align: center;
+  height: 200px;
+  background-color: #F5F5F5;
+  border: 2px dashed black;
+  border-radius: 10px;
+}
+
+
+
+/*Output Display*/
+.outputdisp{
+  margin-right: 30px;
+  text-align: center;
+  height: 200px;
+  background-color: #F5F5F5;
+  border: 2px solid black;
+  border-radius: 10px;
+}
+
+/* Control the right side */
+.right {
+  width: 60%;
+  float: right;
+  height: 200px;
+}
+
+
+
 .main{
     align-items: center;
     align-self: center;
@@ -56,3 +119,13 @@ text-shadow: 0 0 3px #0066ff;
     overflow-y: scroll;
     height: 300px;
 }
+
+/*Output Display*/
+./*howtodisplay{
+  margin-right: 10px;
+  text-align: center;
+  height: 500px;
+  background-color: #F5F5F5;
+  border: 2px solid black;
+  border-radius: 10px;
+}*/
