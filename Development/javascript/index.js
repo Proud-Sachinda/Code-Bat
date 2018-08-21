@@ -8,9 +8,9 @@ $(document).ready(()=>{
         let uploadButton = $('#uploadButton');
          let dropZone = document.getElementById('dropZone');
          let output = $('#output');
-        
+
         let file;
-    
+
 
 
         customButton.click(()=>{
@@ -46,7 +46,7 @@ $(document).ready(()=>{
         uploadButton.click(()=>{
             if (file){
                var fileReader = new FileReader();
-               
+
                fileReader.onload = (e)=>{
                 let data = new Uint8Array(fileReader.result);
 
@@ -55,11 +55,11 @@ $(document).ready(()=>{
                 let htmlStr = XLSX.write(wb, {sheet: 'SalesOrders', type: 'binary', bookType:'html'});
                 $('#output').html(htmlStr)
                }
-            
+
                 fileReader.onerror = function(ex) {
                   console.log(ex);
                 };
-            
+
                 fileReader.readAsArrayBuffer(file)
             }else{
                 alert('no file selected')
@@ -69,4 +69,3 @@ $(document).ready(()=>{
         alert('The File APIs are not fully supported in this browser');
     }
 });
-    
