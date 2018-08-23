@@ -19,7 +19,10 @@ h1 {
     color: white;
     font-size: 20px;
     border: 1px solid #000;
-    border-radius: 30px;
+    border-radius: 10px;
+    margin-left: 9%;
+    margin-right: 9%;
+
 }
 
 
@@ -55,7 +58,16 @@ h1 {
     background-color: #F5F5F5;
     border: 2px dashed black;
     border-radius: 10px;
+
 }
+
+#inside {
+	background-color: rgba(50, 62, 41, 0.493);
+	padding: 5px;	
+
+
+}
+
 
 
 /*Output Display*/
@@ -67,6 +79,7 @@ h1 {
     background-color: #F5F5F5;
     border: 2px solid black;
     border-radius: 10px;
+
 }
 
 
