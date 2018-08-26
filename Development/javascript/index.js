@@ -8,6 +8,7 @@ $(document).ready(() => {
         let dropZone = document.getElementById('dropZone');
         let exportBtn = $('#exportBtn');
         let file;
+        let getCanvas;
 
 
 
@@ -75,21 +76,27 @@ $(document).ready(() => {
 
         exportBtn.click(() => {
             if (file) {
+
                 let select = document.getElementById('exportAs');
                 let selectedOption = select.options[select.selectedIndex].value;
+                let theOutput = document.getElementById('output');
 
                 switch (selectedOption) {
                     case "pdf":
-                        doc.fromHTML($("#output").html(), 20, 20, {
+                        doc.fromHTML(theOutput, 20, 20, {
                             'width': 170,
                             'elementHandlers': specialElementHandlers
                         });
                         doc.save(file.name + "pdf");
                         break;
                     case "png":
-                        alert("to save as png");
-                        break;
+                        domtoimage.toBlob(theOutput)
+                            .then(function(blob) {
+                                window.saveAs(blob, 'my-node.png');
+                            });
                     case "pps":
+
+                        break;
                         alert("to save as pps");
                         break;
 
@@ -104,18 +111,4 @@ $(document).ready(() => {
     } else {
         alert('The File APIs are not fully supported in this browser');
     }
-});
-
-
-
-// pdfButton.click(() => {
-//     var doc = new jsPDF();
-//     file = e.target.files[0]
-
-
-//     doc.froHTML($('#toUse').get(0), 20, 20, {
-//         'width': 500
-//     });
-//     doc.save("test.pdf");
-
-// });
+})
