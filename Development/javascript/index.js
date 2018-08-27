@@ -87,10 +87,16 @@ $(document).ready(() => {
                         doc.save(file.name + "pdf");
                         break;
                     case "png":
-                        domtoimage.toBlob(theOutput)
-                            .then(function(blob) {
-                                window.saveAs(blob, 'my-node.png');
+                        domtoimage.toPng(theOutput)
+                            .then(function(dataUrl) {
+                                var img = new Image();
+                                img.src = dataUrl;
+                                document.body.appendChild(img);
+                            })
+                            .catch(function(error) {
+                                console.error('oops, something went wrong!', error);
                             });
+
                     case "pps":
 
                         break;
