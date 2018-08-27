@@ -10,9 +10,6 @@ $(document).ready(() => {
         let file;
         let getCanvas;
 
-
-
-
         customButton.click(() => {
             $('#file').click();
         });

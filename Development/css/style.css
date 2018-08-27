@@ -10,7 +10,6 @@ h1 {
 
 
 /*Heading Of The Page e.g Batch Processing*/
-
 .pageheader {
     margin-bottom: 10px;
     padding: 10px;
@@ -27,7 +26,6 @@ h1 {
 
 
 /*Splits/Divides screen into two*/
-
 #slpit {
     height: 100%;
     width: 50%;
@@ -38,9 +36,7 @@ h1 {
     padding-top: 20px;
 }
 
-
 /* Control the left side */
-
 .left {
     margin-left: 15px;
     width: 35%;
@@ -61,14 +57,12 @@ h1 {
 
 }
 
+/*About and How To page statements color*/
 #inside {
 	background-color: rgba(50, 62, 41, 0.493);
-	padding: 5px;	
-
+	padding: 5px;
 
 }
-
-
 
 /*Output Display*/
 
@@ -138,6 +132,7 @@ h2 {
     margin-top: 20px;
 }
 
+/*Allowing scroll on the output displsy*/
 #output {
     overflow-y: scroll;
     height: 300px;
