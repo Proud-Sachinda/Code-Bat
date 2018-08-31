@@ -14,3 +14,9 @@ Sandile Khendle,
 Robel Berhanu,
 Lenny Bokgoshi
 
+
+
+USER STORY 
+As a reseacher in the field of chemical engineering I should be able to upload an excel file with results produced from GAMS
+and the program should be able to generate Gantt Chart for me using the excel sheet I would have uploaded. I should also be able 
+to export the charts to PDF as well other formats.
