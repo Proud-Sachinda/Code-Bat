@@ -1,6 +1,11 @@
+Dist: Trusty
+sudo: Required
 language: node_js
 node_js:
- -"v10.10.0"
+ -"iojs"
+ -"7"
+
+
 
 
 
