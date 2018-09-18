@@ -1,5 +1,5 @@
-#Dist: trusty
-#sudo: required
+Dist: trusty
+sudo: required
 language: node_js
 node_js:
 	-"v3.3.1"
