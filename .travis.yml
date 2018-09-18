@@ -1,4 +1,7 @@
 Dist: trusty
+dist: trusty
+os: linux
+group: stable
 sudo: required
 language: node_js
 node_js:
