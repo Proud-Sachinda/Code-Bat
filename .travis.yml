@@ -1,17 +1,14 @@
 Dist: trusty
-dist: trusty
-os: linux
-group: stable
 sudo: required
 language: node_js
 node_js:
-#	-"v3.3.1"
-#	-"7"
+	-"v3.3.1"
+	-"7"
 	-"iojs"
-#	-"iojs-v3.3.1"
-#	-"v10.10.0"
+	-"iojs-v3.3.1"
+	-"v10.10.0"
 	-"node"
-#	-"stable"
+	-"stable"
 
 
 
