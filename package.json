@@ -1,0 +1,15 @@
+{
+    "name": "Code-Bat",
+    "private": true,
+    "scripts": {
+        "start": "nodemon app"
+    },
+    "dependencies": {
+        "express": "^4.16.3",
+        "file-saver": "^1.3.8",
+        "jspdf": "^1.4.1",
+        "morgan": "^1.9.1",
+        "nodemon": "^1.18.4",
+        "xlsx": "^0.14.0"
+    }
+}
