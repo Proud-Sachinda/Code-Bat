@@ -1,3 +1,4 @@
+
 $(document).ready(() => {
 
     if (window.File && window.FileReader && window.FileList && window.Blob) {
@@ -8,7 +9,7 @@ $(document).ready(() => {
         let dropZone = document.getElementById('dropZone');
         let exportBtn = $('#exportBtn');
         let file;
-        let getCanvas;
+        //let getCanvas;
 
         customButton.click(() => {
             $('#file').click();
@@ -16,7 +17,6 @@ $(document).ready(() => {
         $('#file').change((e) => {
             file = e.target.files[0]
             if ($('#file').val()) {
-                // console.log($('#file').val())
                 customText.html(file.name)
             } else {
                 customText.html('No File Chosen')
