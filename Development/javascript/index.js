@@ -84,8 +84,13 @@ $(document).ready(() => {
                             'width': 170,
                             'elementHandlers': specialElementHandlers
                         });
-                        doc.save(file.name + "pdf");
+                        
+                        var fileName = file.name;
+                        var res = fileName.split(".");
+
+                        doc.save(res[0] + ".pdf");
                         break;
+
                     case "png":
                         let element = document.getElementById('output');
                         html2canvas(element).then((canvas)=>{
@@ -93,13 +98,22 @@ $(document).ready(() => {
                         	var block = base64Image.split(";");
 			    			var mimeType  = block[0].split(":")[1];
 			    			var realData = block[1].split(",")[1];
-			    			var canvasBlob = b64toBlob(realData, mimeType);
-                        	window.saveAs(canvasBlob, file.name+ "png");
+                            var canvasBlob = b64toBlob(realData, mimeType);
+                            
+                        	var fileName = file.name;
+                            var res = fileName.split(".");
+
+                        	window.saveAs(canvasBlob, res[0]+ ".png");
                         })
+                        break;
+
+                    case "Download As:":
+                        alert('Select File You Would Like To Export To');
+                        break;
+
 
                     case "pps":
 
-                        break;
                         alert("to save as pps");
                         break;
 
@@ -149,3 +163,12 @@ $(document).ready(() => {
         alert('The File APIs are not fully supported in this browser');
     }
 })
+
+function openNav() {
+    document.getElementById("mySidenav").style.width = "250px";
+}
+
+function closeNav() {
+    document.getElementById("mySidenav").style.width = "0";
+}
+
