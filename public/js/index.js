@@ -1,4 +1,3 @@
-
 $(document).ready(() => {
 
     if (window.File && window.FileReader && window.FileList && window.Blob) {
@@ -8,8 +7,10 @@ $(document).ready(() => {
         let uploadButton = $('#uploadButton');
         let dropZone = document.getElementById('dropZone');
         let exportBtn = $('#exportBtn');
+        let getResults = $("#getResults");
+        let updateBtn = $("#updateBtn")
         let file;
-        //let getCanvas;
+        let workBook, excelIO;
 
         customButton.click(() => {
             $('#file').click();
@@ -17,6 +18,7 @@ $(document).ready(() => {
         $('#file').change((e) => {
             file = e.target.files[0]
             if ($('#file').val()) {
+                // console.log($('#file').val())
                 customText.html(file.name)
             } else {
                 customText.html('No File Chosen')
@@ -31,7 +33,7 @@ $(document).ready(() => {
         dropZone.addEventListener('drop', (e) => {
             e.stopPropagation();
             e.preventDefault();
-            // if (!e.dataTransfer.files[0].type==='xlsx'){
+            // if (!e.dataTransfer.files[0].type==='xlsx'){ //to check if the file uploaded is of the correct type
             //     alert('we can only take xlsl files')
             // }
             file = e.dataTransfer.files[0];
@@ -42,26 +44,64 @@ $(document).ready(() => {
         //uploading the file for processing
         uploadButton.click(() => {
             if (file) {
-                var fileReader = new FileReader();
 
-                fileReader.onload = (e) => {
-                    let data = new Uint8Array(fileReader.result);
+                /*DO NOT REMOVE THIS CODE AS YET. IN CASE THE SPREADJS THINNGING DOES NOT WORK */
+                // var fileReader = new FileReader();
 
-                    let wb = XLSX.read(data, { type: 'array' });
+                // fileReader.onload = (e) => {
+                //     let data = new Uint8Array(fileReader.result);
 
-                    let htmlStr = XLSX.write(wb, { sheet: 'SalesOrders', type: 'binary', bookType: 'html' });
-                    $('#output').html(htmlStr)
-                }
+                //     let wb = XLSX.read(data, { type: 'array' });
 
-                fileReader.onerror = function(ex) {
-                    console.log(ex);
-                };
+                //     let htmlStr = XLSX.write(wb, { sheet: 'SalesOrders', type: 'binary', bookType: 'html' });
+                //     $('#output').html(htmlStr)
+                // }
 
-                fileReader.readAsArrayBuffer(file)
+                // fileReader.onerror = function(ex) {
+                //     console.log(ex);
+                // };
+
+                // fileReader.readAsArrayBuffer(file)
+                workBook = new GC.Spread.Sheets.Workbook(document.getElementById("output"));
+                excelIO = new GC.Spread.Excel.IO();
+                excelIO.open(file, (json)=>{
+                    let workBookObj= json;
+                    workBook.fromJSON(workBookObj);
+                    workBook.setActiveSheet("SalesOrders");
+                }, (e)=>{
+                    console.log(e)
+                })
             } else {
                 alert('no file selected')
             }
         });
+        getResults.click(()=>{
+            //to add Gant Chart plotting functionality 
+        })
+
+        //update the user's changes on the workbook
+        updateBtn.click(()=>{
+            if (file){
+                let json = JSON.stringify(workBook.toJSON())
+                excelIO.save(json, (blob)=>{
+                    file = blob;
+                    excelIO.open(file, (json)=>{
+                    
+                        workBook.fromJSON(json);
+                        workBook.setActiveSheet("SalesOrders");
+                    }, (e)=>{
+                        console.log(e)
+                    })
+                }, (e)=>{
+                    if (e.errorCode ===1){
+                        alert(e.errorMessage);
+                    }
+                });
+                
+            }else{
+                alert("Please select file")
+            }
+        })
 
         let doc = new jsPDF();
         let specialElementHandlers = {
@@ -70,7 +110,7 @@ $(document).ready(() => {
             }
 
         };
-
+        //download the results based on the user's preferred file type
         exportBtn.click(() => {
             if (file) {
 
@@ -84,8 +124,13 @@ $(document).ready(() => {
                             'width': 170,
                             'elementHandlers': specialElementHandlers
                         });
-                        doc.save(file.name + "pdf");
+                        
+                        var fileName = file.name;
+                        var res = fileName.split(".");
+
+                        doc.save(res[0] + ".pdf");
                         break;
+
                     case "png":
                         let element = document.getElementById('output');
                         html2canvas(element).then((canvas)=>{
@@ -93,13 +138,22 @@ $(document).ready(() => {
                         	var block = base64Image.split(";");
 			    			var mimeType  = block[0].split(":")[1];
 			    			var realData = block[1].split(",")[1];
-			    			var canvasBlob = b64toBlob(realData, mimeType);
-                        	window.saveAs(canvasBlob, file.name+ "png");
+                            var canvasBlob = b64toBlob(realData, mimeType);
+                            
+                        	var fileName = file.name;
+                            var res = fileName.split(".");
+
+                        	window.saveAs(canvasBlob, res[0]+ ".png");
                         })
+                        break;
+
+                    case "Download As:":
+                        alert('Select File You Would Like To Export To');
+                        break;
+
 
                     case "pps":
 
-                        break;
                         alert("to save as pps");
                         break;
 
@@ -149,3 +203,12 @@ $(document).ready(() => {
         alert('The File APIs are not fully supported in this browser');
     }
 })
+
+function openNav() {
+    document.getElementById("mySidenav").style.width = "250px";
+}
+
+function closeNav() {
+    document.getElementById("mySidenav").style.width = "0";
+}
+

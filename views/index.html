@@ -5,32 +5,60 @@
     <title>Batch Process</title>
     <link rel="stylesheet" text="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="/css/style.css">
-
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-
-
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+	<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-black.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css">
+    
+    <!-- testing spread js -->
+    <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js" type="text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2014-11-29/FileSaver.min.js" type="text/javascript"></script>
+    <link href="https://cdn.grapecity.com/spreadjs/hosted/css/gc.spread.sheets.excel2013white.10.0.0.css"
+        rel="stylesheet" type="text/css">
+    <script src="https://cdn.grapecity.com/spreadjs/hosted/scripts/gc.spread.sheets.all.10.0.0.min.js" type="text/javascript"></script>
+    <script src="https://cdn.grapecity.com/spreadjs/hosted/scripts/interop/gc.spread.excelio.10.0.0.min.js" type="text/javascript"></script>
+
+	<style type="text/css">
+
+	h1,h4 {
+    	text-shadow: 0 0 5px #4f0db4;
+	}
+
+    .expAlign {
+        float: right;
+    }
+
+	</style>
+
 
 </head>
 
 <body>
-    <section id="header">
-        <div class="pageheader">
-            <h2>BATCH PROCESSING</h2>
-        </div>
 
-        <div class="container">
-            <nav class="nav nav-pills nav-justified">
-                    <a class="nav-item nav-link active" >Home</a>
-                    <a class="nav-item nav-link"  href="/howto">How To </a>
-                    <a class="nav-item nav-link"  href="/about" >About</a>
-            </nav>
-            <hr/>
+	<div id="mySidenav" class="sidenav">
+	  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+	  <a class="nav-item nav-link" active >Home</a>
+      <a class="nav-item nav-link"  href="/howto">How To </a>
+      <a class="nav-item nav-link"  href="/about" >About</a>
+	</div>
+
+	<!-- Header -->
+	<header class="w3-container w3-theme w3-padding" id="myHeader">
+	  <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
+	  <div class="w3-center">
+		  <h4>Code Bat</h4>
+		  <h1 class="w3-xxxlarge w3-animate-bottom">BATCH PROCESSING</h1>
+	  </div>
+	</header>
+
+    <section id="header">
+
         <!-- Left Screen(TODO) -->
         <section>
 
-            <div class="split left">
-                <article>
+        		<article>
                     <h3>INPUT</h3>
                 </article>
 
@@ -61,7 +89,7 @@
                        </span>
                             <br>
                         </div>
-                        <hr>
+
                     </div>
                 </section>
 
@@ -73,42 +101,95 @@
                     <button type="button" class="btn btn-outline-primary" id="uploadButton"><strong>Upload !</strong>
                      </button>
                 </div>
+  				<hr>
+        
+                      
 
-
-            </div>
             <!--End Of Left Screen-->
 
             <!-- Right Screen(TODO) -->
-            <div class="split right">
+
                 <div class="">
-                    <article>
-                        <h3>OUTPUT</h3>
-                    </article>
 
-                    <p id="toUse">Your tables, graphs, etc below... </p>
+                    <p id="toUse">Make sure you submited the correct file in the correct format... </p>
 
-                    <div id="output" class="outputdisp">
-                        <!-- Should be able to download pdf, pps, png -->
-                    </div>
+
                     <div class="exportClass">
+						<div class="w3-row-padding">
+
+						<!-- Review here  -->
+
+						<div class="w3-half">
+						<div class="w3-card white">
+						  <div class="w3-container w3-theme">
+						    <h3>Any changes you want to make?</h3>
+						  </div>
+
+
+						<div id="output" class="outputdisp" onclick="this.contentEditable='true'">
+                        <!-- Should be able to download pdf, pps, png -->
+                    	</div>
+
+
+                         <div class="w3-container w3-theme w3-large"><span class="w3-right">Edit Your File</span></div>
+                         
+                         <div class="expAlign">
+                            <button class="exportBtn" id="updateBtn" >Update File</button>
+                            <button class="exportBtn" id="getResults">Get Results</button>
+                            
+                         </div>
+
+						</div>
+						</div>
+
+						<!-- Output here  -->
+
+						<div class="w3-half">
+						<div class="w3-card white">
+						  <div class="w3-container w3-theme">
+						    <h3>Final Ouput</h3>
+						  </div>
+
+
+						<div id="output" class="outputdisp">
+                        <!-- Should be able to download pdf, pps, png -->
+                    	</div>
+
+
+                          <div class="w3-container w3-theme w3-large"><span class="w3-right">You Can Now Export</span></div>
+
+                          <div class="expAlign">
+
+                            <select id="exportAs" class="selectBtn" >
+                                <optgroup>
+                                    <option value="" selected="selected">Download As:</option>
+                                    <option value="pdf" id="pdfButton">PDF</option>
+                                    <option value="png">PNG</option>
+                                    <option value="pps">PPS</option>
+                                </optgroup>
+                            </select>
+
+                            <!-- <button class="btn btn-outline-primary" >Export</button> -->
+                            <button class="exportBtn" id="exportBtn">Export</button>
+
+                          </div>
+
+						</div>
+						</div>
+
+						</div>
+
+						<hr>
+
                         <!-- <button type="button" id="pdfButton">Download pdf</button>
                         <button type="button" id="pngButton">Download png</button>
                         <button type="button" id="ppsButton">Download pps</button> -->
-                        <select id="exportAs">
-                            <optgroup>
-                                <option value="" selected="selected">Download As:</option>
-                                <option value="pdf" id="pdfButton">PDF</option>
-                                <option value="png">PNG</option>
-                                <option value="pps">PPS</option>
-                            </optgroup>
 
-                            </select>
-                        <button class="btn-primary" id="exportBtn">Export</button>
+
                     </div>
 
                 </div>
 
-            </div>
             <!--End Of Right Screen-->
         </section>
     </section>
@@ -120,8 +201,9 @@
     <script src="/js/dom-to-image.min.js"></script>
      <script type="text/javascript" src="/js/html2canvas.js"></script>
     <script src="https://cdn.rawgit.com/eligrey/FileSaver.js/5ed507ef8aa53d8ecfea96d96bc7214cd2476fd2/FileSaver.min.js"></script>
-    <script src="/js/xlsx.min.js" type="text/javascript"></script>
+    <!-- <script src="../javascript/xlsx.min.js" type="text/javascript"></script> -->
 
 </body>
 
 </html>
+
