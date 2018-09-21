@@ -2,9 +2,11 @@
     "name": "Code-Bat",
     "private": true,
     "scripts": {
-        "start": "nodemon app"
+        "start": "nodemon app",
+        "test": "mocha --exit"
     },
     "dependencies": {
+        "assert": "^1.4.1",
         "chai": "^4.1.2",
         "dom-to-image": "^2.6.0",
         "ejs": "^2.6.1",
@@ -16,6 +18,7 @@
         "mocha": "^5.2.0",
         "morgan": "^1.9.1",
         "nodemon": "^1.18.4",
+        "supertest": "^3.3.0",
         "xlsx": "^0.14.0"
     }
 }

@@ -35,3 +35,5 @@ app.use((req, res)=>{
 app.listen(3001, ()=>{
     console.log("Application is running at localhost:3001 ");
 })
+
+module.exports = app
