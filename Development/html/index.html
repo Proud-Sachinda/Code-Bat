@@ -46,88 +46,87 @@
 
     <section id="header">
 
-        <<<<<<< HEAD <div class="pageheader">
+        <div class="pageheader">
             <h2>BATCH PROCESSING</h2>
             <p>A GUI interface to the generation of Gantt Chart schedules in Batch Process Optimisation from GAMS/CPLEX deterministic solvers.</p>
-            </div>
+        </div>
 
-            <div class="container">
-                <nav class="nav nav-pills nav-justified">
-                    <a class="nav-item nav-link active">Home</a>
-                    <a class="nav-item nav-link" href="./howto.html">How To </a>
-                    <a class="nav-item nav-link" href="./about.html">About</a>
-                </nav>
-                <hr/>
-                <!-- Left Screen(TODO) -->
-                <section>
+        <div class="container">
+            <nav class="nav nav-pills nav-justified">
+                <a class="nav-item nav-link active">Home</a>
+                <a class="nav-item nav-link" href="./howto.html">How To </a>
+                <a class="nav-item nav-link" href="./about.html">About</a>
+            </nav>
+            <hr/>
+            <!-- Left Screen(TODO) -->
+            <section>
 
-                    <div class="split left">
+                <div class="split left">
+                    <article>
+                        <h3>INPUT</h3>
+                    </article>
+                    <!-- Left Screen(TODO) -->
+                    <section>
+
                         <article>
                             <h3>INPUT</h3>
                         </article>
-                        =======
-                        <!-- Left Screen(TODO) -->
-                        <section>
 
-                            <article>
-                                <h3>INPUT</h3>
-                            </article>
-                            >>>>>>> 16581062e45ed378e1ede9714547a16fba00bb57
 
-                            <p>Please Upload Your File... </p>
-                            <!--Only Accepts spreadsheet-->
+                        <p>Please Upload Your File... </p>
+                        <!--Only Accepts spreadsheet-->
 
-                            <section id="Upload">
-                                <div class="container main">
-                                    <div id="dropZone">
+                        <section id="Upload">
+                            <div class="container main">
+                                <div id="dropZone">
 
-                                        <div>Drag &amp; Drop Files Here</div>
+                                    <div>Drag &amp; Drop Files Here</div>
 
-                                        <div>OR</div>
+                                    <div>OR</div>
 
-                                        <div><input type="file" id="file" name="file" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" style="visibility:hidden">
-                                        </div>
+                                    <div><input type="file" id="file" name="file" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" style="visibility:hidden">
+                                    </div>
 
-                                        <div> <button type="button" id="customButton">
+                                    <div> <button type="button" id="customButton">
                              <strong>Choose  File</strong>
                            </button>
-                                        </div>
-                                        <span id="customText">
+                                    </div>
+                                    <span id="customText">
                          <strong>No File Chosen!</strong>
                        </span>
-                                        <br>
-                                    </div>
-                                    <hr>
+                                    <br>
                                 </div>
-                            </section>
+                                <hr>
+                            </div>
+                        </section>
 
-                            <input type="file" id="real-file" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet/*" hidden="hidden">
-                            <div id="upload">
-                                <button type="button" class="btn btn-outline-primary" id="uploadButton"><strong>Upload !</strong>
+                        <input type="file" id="real-file" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet/*" hidden="hidden">
+                        <div id="upload">
+                            <button type="button" class="btn btn-outline-primary" id="uploadButton"><strong>Upload !</strong>
                      </button>
-                            </div>
+                        </div>
 
 
-                    </div>
-                    <!--End Of Left Screen-->
+                </div>
+                <!--End Of Left Screen-->
 
-                    <!-- Right Screen(TODO) -->
-                    <div class="split right">
-                        <div class="">
-                            <article>
-                                <h3>OUTPUT</h3>
-                            </article>
+                <!-- Right Screen(TODO) -->
+                <div class="split right">
+                    <div class="">
+                        <article>
+                            <h3>OUTPUT</h3>
+                        </article>
 
-                            <p id="toUse">Your tables, graphs, etc below... </p>
+                        <p id="toUse">Your tables, graphs, etc below... </p>
 
-                            <div id="output" class="outputdisp">
-                                <!-- Should be able to download pdf, pps, png -->
-                            </div>
-                            <div class="exportClass">
-                                <!-- <button type="button" id="pdfButton">Download pdf</button>
+                        <div id="output" class="outputdisp">
+                            <!-- Should be able to download pdf, pps, png -->
+                        </div>
+                        <div class="exportClass">
+                            <!-- <button type="button" id="pdfButton">Download pdf</button>
                         <button type="button" id="pngButton">Download png</button>
                         <button type="button" id="ppsButton">Download pps</button> -->
-                                <select id="exportAs">
+                            <select id="exportAs">
                             <optgroup>
                                 <option value="" selected="selected">Download As:</option>
                                 <option value="pdf" id="pdfButton">PDF</option>
@@ -136,74 +135,74 @@
                             </optgroup>
 
                             </select>
-                                <button class="btn-primary" id="exportBtn">Export</button>
-                            </div>
-
-
+                            <button class="btn-primary" id="exportBtn">Export</button>
                         </div>
-                        </section>
 
-                        <input type="file" id="real-file" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet/*" hidden="hidden">
-                        <div id="upload">
-                            <button type="button" class="btn btn-outline-primary" id="uploadButton"><strong>Upload !</strong>
+
+                    </div>
+                    </section>
+
+                    <input type="file" id="real-file" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet/*" hidden="hidden">
+                    <div id="upload">
+                        <button type="button" class="btn btn-outline-primary" id="uploadButton"><strong>Upload !</strong>
                      </button>
-                        </div>
-                        <hr>
+                    </div>
+                    <hr>
 
 
-                        <!--End Of Left Screen-->
+                    <!--End Of Left Screen-->
 
-                        <!-- Right Screen(TODO) -->
+                    <!-- Right Screen(TODO) -->
 
-                        <div class="">
+                    <div class="">
 
-                            <p id="toUse">Make sure you submited the correct file in the correct format... </p>
-
-
-                            <div class="exportClass">
-                                <div class="w3-row-padding">
-
-                                    <!-- Review here  -->
-
-                                    <div class="w3-half">
-                                        <div class="w3-card white">
-                                            <div class="w3-container w3-theme">
-                                                <h3>Any changes you want to make?</h3>
-                                            </div>
+                        <p id="toUse">Make sure you submited the correct file in the correct format... </p>
 
 
-                                            <div id="output" class="outputdisp">
-                                                <!-- Should be able to download pdf, pps, png -->
-                                            </div>
+                        <div class="exportClass">
+                            <div class="w3-row-padding">
 
+                                <!-- Review here  -->
 
-                                            <div class="w3-container w3-theme w3-large"><span class="w3-right">Edit Your File</span></div>
-                                            <div class="expAlign">
-                                                <button class="exportBtn" id="#">Get Results</button>
-                                            </div>
-
+                                <div class="w3-half">
+                                    <div class="w3-card white">
+                                        <div class="w3-container w3-theme">
+                                            <h3>Any changes you want to make?</h3>
                                         </div>
+
+
+                                        <div id="output" class="outputdisp">
+                                            <!-- Should be able to download pdf, pps, png -->
+                                        </div>
+
+
+                                        <div class="w3-container w3-theme w3-large"><span class="w3-right">Edit Your File</span></div>
+                                        <div class="expAlign">
+                                            <button class="exportBtn" id="#">Get Results</button>
+                                        </div>
+
                                     </div>
+                                </div>
 
-                                    <!-- Output here  -->
+                                <!-- Output here  -->
 
-                                    <div class="w3-half">
-                                        <div class="w3-card white">
-                                            <div class="w3-container w3-theme">
-                                                <h3>Final Ouput</h3>
-                                            </div>
-
-
-                                            <div id="output" class="outputdisp">
-                                                <!-- Should be able to download pdf, pps, png -->
-                                            </div>
+                                <div class="w3-half">
+                                    <div class="w3-card white">
+                                        <div class="w3-container w3-theme">
+                                            <h3>Final Ouput</h3>
+                                        </div>
 
 
-                                            <div class="w3-container w3-theme w3-large"><span class="w3-right">You Can Now Export</span></div>
+                                        <div id="output" class="outputdisp">
+                                            <!-- Should be able to download pdf, pps, png -->
+                                        </div>
 
-                                            <div class="expAlign">
 
-                                                <select id="exportAs" class="selectBtn">
+                                        <div class="w3-container w3-theme w3-large"><span class="w3-right">You Can Now Export</span></div>
+
+                                        <div class="expAlign">
+
+                                            <select id="exportAs" class="selectBtn">
                                 <optgroup>
                                     <option value="" selected="selected">Download As:</option>
                                     <option value="pdf" id="pdfButton">PDF</option>
@@ -212,32 +211,32 @@
                                 </optgroup>
                             </select>
 
-                                                <!-- <button class="btn btn-outline-primary" >Export</button> -->
-                                                <button class="exportBtn" id="exportBtn">Export</button>
-
-                                            </div>
+                                            <!-- <button class="btn btn-outline-primary" >Export</button> -->
+                                            <button class="exportBtn" id="exportBtn">Export</button>
 
                                         </div>
-                                    </div>
 
+                                    </div>
                                 </div>
 
-                                <hr>
+                            </div>
 
-                                <!-- <button type="button" id="pdfButton">Download pdf</button>
+                            <hr>
+
+                            <!-- <button type="button" id="pdfButton">Download pdf</button>
                         <button type="button" id="pngButton">Download png</button>
                         <button type="button" id="ppsButton">Download pps</button> -->
 
 
-                            </div>
-
                         </div>
 
-                        <!--End Of Right Screen-->
-                </section>
+                    </div>
+
+                    <!--End Of Right Screen-->
+            </section>
 
 
-                <!--End Of Right Screen-->
+            <!--End Of Right Screen-->
     </section>
     </section>
 
@@ -252,9 +251,6 @@
 
 </body>
 
-<<<<<<< HEAD </html>
-    =======
+
 
 </html>
-
->>>>>>> 16581062e45ed378e1ede9714547a16fba00bb57
