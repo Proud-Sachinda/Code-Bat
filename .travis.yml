@@ -1,9 +1,10 @@
 language: node_js
 node_js:
-	- 8.10.0
+	- "4.1"
+  - "4.0"
 # before_install:
 #   - npm i -g npm@6.4.1
-# install:
-# 	- npm install 	
+ install:
+ 	- npm install 	
 script:
-	- "npm start"
+	- npm start
