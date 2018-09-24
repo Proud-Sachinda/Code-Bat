@@ -15,6 +15,26 @@ describe('Testing the / route', ()=>{
     })
 })
 
+describe('Testing the /about route', ()=>{
+    it('Should return OK status', ()=>{
+        return request(app)
+        .get("/about")
+        .then((res)=>{
+            assert.equal(res.status, 200)
+        })
+    })
+})
+
+describe('Testing the /howto route', ()=>{
+    it('Should return OK status', ()=>{
+        return request(app)
+        .get("/howto")
+        .then((res)=>{
+            assert.equal(res.status, 200)
+        })
+    })
+})
+
 //testing an non-existent route
 describe('Testing the /test route', ()=>{
     it('should return 404 status', ()=>{
