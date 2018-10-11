@@ -10,7 +10,7 @@ $(document).ready(() => {
         let file;
         let getPlotBtn = $("#getPlot");
         let getCanvas;
-	let csv;
+	      let csv;
 
         customButton.click(() => {
             $('#file').click();
@@ -74,116 +74,116 @@ $(document).ready(() => {
         });
 
 trace1 = {
-  x: ['2009-01-01', '2009-02-30'], 
-  y: [0, 0], 
-  marker: {color: 'white'}, 
-  name: '', 
+  x: ['2009-01-01', '2009-02-30'],
+  y: [0, 0],
+  marker: {color: 'white'},
+  name: '',
   type: 'scatter'
 };
 trace2 = {
-  x: ['2009-03-05', '2009-04-15'], 
-  y: [1, 1], 
-  marker: {color: 'white'}, 
-  name: '', 
+  x: ['2009-03-05', '2009-04-15'],
+  y: [1, 1],
+  marker: {color: 'white'},
+  name: '',
   type: 'scatter'
 };
 trace3 = {
-  x: ['2009-02-20', '2009-05-30'], 
-  y: [2, 2], 
-  marker: {color: 'white'}, 
-  name: '', 
+  x: ['2009-02-20', '2009-05-30'],
+  y: [2, 2],
+  marker: {color: 'white'},
+  name: '',
   type: 'scatter'
 };
 data = [trace1, trace2, trace3];
 
 layout = {
-  height: 600, 
-  hovermode: 'closest', 
+  height: 600,
+  hovermode: 'closest',
   shapes: [
     {
-      fillcolor: 'rgb(31.0, 119.0, 180.0)', 
-      line: {width: 0}, 
-      opacity: 1, 
-      type: 'rect', 
-      x0: '2009-01-01', 
-      x1: '2009-02-30', 
-      xref: 'x', 
-      y0: -0.2, 
-      y1: 0.2, 
+      fillcolor: 'rgb(31.0, 119.0, 180.0)',
+      line: {width: 0},
+      opacity: 1,
+      type: 'rect',
+      x0: '2009-01-01',
+      x1: '2009-02-30',
+      xref: 'x',
+      y0: -0.2,
+      y1: 0.2,
       yref: 'y'
-    }, 
+    },
     {
-      fillcolor: 'rgb(255.0, 127.0, 14.0)', 
-      line: {width: 0}, 
-      opacity: 1, 
-      type: 'rect', 
-      x0: '2009-03-05', 
-      x1: '2009-04-15', 
-      xref: 'x', 
-      y0: 0.8, 
-      y1: 1.2, 
+      fillcolor: 'rgb(255.0, 127.0, 14.0)',
+      line: {width: 0},
+      opacity: 1,
+      type: 'rect',
+      x0: '2009-03-05',
+      x1: '2009-04-15',
+      xref: 'x',
+      y0: 0.8,
+      y1: 1.2,
       yref: 'y'
-    }, 
+    },
     {
-      fillcolor: 'rgb(44.0, 160.0, 44.0)', 
-      line: {width: 0}, 
-      opacity: 1, 
-      type: 'rect', 
-      x0: '2009-02-20', 
-      x1: '2009-05-30', 
-      xref: 'x', 
-      y0: 1.8, 
-      y1: 2.2, 
+      fillcolor: 'rgb(44.0, 160.0, 44.0)',
+      line: {width: 0},
+      opacity: 1,
+      type: 'rect',
+      x0: '2009-02-20',
+      x1: '2009-05-30',
+      xref: 'x',
+      y0: 1.8,
+      y1: 2.2,
       yref: 'y'
     }
-  ], 
-  showlegend: false, 
-  title: 'Gantt Chart', 
-  width: 900, 
+  ],
+  showlegend: false,
+  title: 'Gantt Chart',
+  width: 900,
   xaxis: {
     rangeselector: {buttons: [
         {
-          count: 7, 
-          label: '1w', 
-          step: 'day', 
+          count: 7,
+          label: '1w',
+          step: 'day',
           stepmode: 'backward'
-        }, 
+        },
         {
-          count: 1, 
-          label: '1m', 
-          step: 'month', 
+          count: 1,
+          label: '1m',
+          step: 'month',
           stepmode: 'backward'
-        }, 
+        },
         {
-          count: 6, 
-          label: '6m', 
-          step: 'month', 
+          count: 6,
+          label: '6m',
+          step: 'month',
           stepmode: 'backward'
-        }, 
+        },
         {
-          count: 1, 
-          label: 'YTD', 
-          step: 'year', 
+          count: 1,
+          label: 'YTD',
+          step: 'year',
           stepmode: 'todate'
-        }, 
+        },
         {
-          count: 1, 
-          label: '1y', 
-          step: 'year', 
+          count: 1,
+          label: '1y',
+          step: 'year',
           stepmode: 'backward'
-        }, 
+        },
         {step: 'all'}
-      ]}, 
-    showgrid: false, 
-    type: 'date', 
+      ]},
+    showgrid: false,
+    type: 'date',
     zeroline: false
-  }, 
+  },
   yaxis: {
-    autorange: false, 
-    range: [-1, 4], 
-    showgrid: false, 
-    ticktext: ['Job A', 'Job B', 'Job C'], 
-    tickvals: [0, 1, 2], 
+    autorange: false,
+    range: [-1, 4],
+    showgrid: false,
+    ticktext: ['Job A', 'Job B', 'Job C'],
+    tickvals: [0, 1, 2],
     zeroline: false
   }
 };
@@ -197,11 +197,15 @@ layout = {
         };
 	    getPlotBtn.click(() => {
 
-		Plotly.plot('output1',{
-		data: data,//csvJSON(csv),
-		layout: layout
-} );
-        })
+  		Plotly.plot('output1',{
+  		data: data,//csvJSON(csv),
+      		layout: layout
+      } );
+      Plotly.plot('fullscreen',{
+  		data: data,//csvJSON(csv),
+      		layout: layout
+      } );
+      })
 
 
 function csvJSON(csv){
@@ -233,7 +237,7 @@ function csvJSON(csv){
 
                 let select = document.getElementById('exportAs');
                 let selectedOption = select.options[select.selectedIndex].value;
-                let theOutput = document.getElementById('output');
+                let theOutput = document.getElementById('output1');
 
                 switch (selectedOption) {
                     case "pdf":
@@ -249,7 +253,7 @@ function csvJSON(csv){
                         break;
 
                     case "png":
-                        let element = document.getElementById('output');
+                        let element = document.getElementById('output1');
                         html2canvas(element).then((canvas) => {
                             let base64Image = canvas.toDataURL("image/png");
                             var block = base64Image.split(";");
@@ -280,10 +284,10 @@ function csvJSON(csv){
             }
         })
 
-    
+
             /**
              * Convert a base64 string in a Blob according to the data and contentType.
-             * 
+             *
              * @param b64Data {String} Pure base64 string without contentType
              * @param contentType {String} the content type of the file i.e (image/jpeg - image/png - text/plain)
              * @param sliceSize {Int} SliceSize to process the byteCharacters
@@ -327,4 +331,28 @@ function openNav() {
 
 function closeNav() {
     document.getElementById("mySidenav").style.width = "0";
+}
+
+
+// Get the modal
+var modal = document.getElementById('myModal');
+var btn = document.getElementById("myBtn"); // Get the button that opens the modal
+
+var span = document.getElementsByClassName("close")[0]; // Get the <span> element that closes the modal
+
+// When the user clicks the button, open the modal
+btn.onclick = function() {
+    modal.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+    modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
 }
