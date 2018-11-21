@@ -32,9 +32,71 @@
         float: right;
     }
 
+            /* Popup box BEGIN */
+.hover_bkgr_fricc{
+    background:rgba(0,0,0,.4);
+    cursor:pointer;
+    display:none;
+    height:100%;
+    position:fixed;
+    text-align:center;
+    top:0;
+    width:100%;
+    z-index:10000;
+}
+.hover_bkgr_fricc .helper{
+    display:inline-block;
+    height:100%;
+    vertical-align:middle;
+}
+.hover_bkgr_fricc > div {
+    background-color: #fff;
+    box-shadow: 10px 10px 60px #555;
+    display: inline-block;
+    height: auto;
+    max-width: 1000px;
+    min-height: 100px;
+    vertical-align: middle;
+    width: 100%;
+    position: relative;
+    border-radius: 8px;
+    padding: 15px 5%;
+}
+.popupCloseButton {
+    background-color: #fff;
+    border: 3px solid #999;
+    border-radius: 50px;
+    cursor: pointer;
+    display: inline-block;
+    font-family: arial;
+    font-weight: bold;
+    position: absolute;
+    top: -1px;
+    right: -1px;
+    font-size: 25px;
+    line-height: 30px;
+    width: 30px;
+    height: 30px;
+    text-align: center;
+}
+.popupCloseButton:hover {
+    background-color: #ccc;
+}
+.trigger_popup_fricc {
+    cursor: pointer;
+    font-size: 20px;
+    margin: 20px;
+    display: inline-block;
+    font-weight: bold;
+}
+/* Popup box BEGIN */
+
+.scrolling-container{
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
 	</style>
-
-
 </head>
 
 <body>
@@ -54,7 +116,10 @@
 		  <h1 class="w3-xxxlarge w3-animate-bottom">BATCH PROCESSING</h1>
 	  </div>
 	</header>
+    <!-- <a class="trigger_popup_fricc">Click here to show the popup</a> -->
 
+  
+        
     <section id="header">
 
         <!-- Left Screen(TODO) -->
@@ -117,11 +182,11 @@
 
 
                     <div class="exportClass">
-						<div class="w3-row-padding">
+						<div class="w3-row-padding" >
 
 						<!-- Review here  -->
 
-						<div class="w3-half">
+						<div class="w3" style="margin-bottom: 100px">
 						<div class="w3-card white">
 						  <div class="w3-container w3-theme">
 						    <h3>Any changes you want to make?</h3>
@@ -137,7 +202,7 @@
                          
                          <div class="expAlign">
                             <button class="exportBtn" id="updateBtn" >Update File</button>
-                            <button class="exportBtn" id="getResults">Get Results</button>
+                            <button class="exportBtn trigger_popup_fricc" id="getResults" disabled>Get Results</button>
                             
                          </div>
 
@@ -145,43 +210,47 @@
 						</div>
 
 						<!-- Output here  -->
-
-						<div class="w3-half">
-						<div class="w3-card white">
-						  <div class="w3-container w3-theme">
-						    <h3>Final Ouput</h3>
+                      
+						<!-- <div id="outputHalf" >
+						<div class="w3-card white" >
+						  <div class="w3-container w3-theme" >
+						    <h3 >Final Ouput</h3>
 						  </div>
 
-
-						<div id="output" class="outputdisp">
-                        <!-- Should be able to download pdf, pps, png -->
-                        <svg id="example">
-                            
-                          </svg>
+						<div id="output1" class="outputdisp">
+                         Should be able to download pdf, pps, png 
+                      
                     	</div>
 
 
                           <div class="w3-container w3-theme w3-large"><span class="w3-right">You Can Now Export</span></div>
 
                           <div class="expAlign">
-
+                            <a id="test"></a>
                             <select id="exportAs" class="selectBtn" >
                                 <optgroup>
                                     <option value="" selected="selected">Download As:</option>
                                     <option value="pdf" id="pdfButton">PDF</option>
                                     <option value="png">PNG</option>
+                                    
                                     <option value="pps">PPS</option>
                                 </optgroup>
                             </select>
 
-                            <!-- <button class="btn btn-outline-primary" >Export</button> -->
+                            <button class="btn btn-outline-primary" >Export</button> 
                             <button class="exportBtn" id="exportBtn">Export</button>
 
                           </div>
 
 						</div>
-						</div>
-
+						</div> -->
+                        <div class="hover_bkgr_fricc">
+                                <span class="helper"></span>
+                                <div class="scrolling-container">
+                                    <div class="popupCloseButton">X</div>
+                                    <div id="outputDiv" ></div>
+                                </div>
+                            </div>
 						</div>
 
 						<hr>
@@ -204,9 +273,10 @@
     <script src="/js/xlsx.min.js" type="text/javascript"></script>
     <script src="/js/jspdf.min.js"></script>
     <script src="/js/dom-to-image.min.js"></script>
-    <script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/plottable.js/2.1.0/plottable.min.js"></script>
     <script type="text/javascript" src="/js/html2canvas.js"></script>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/gantt/modules/gantt.js"></script>
+    <script src="https://code.highcharts.com/gantt/modules/exporting.js"></script>
     <script src="https://cdn.rawgit.com/eligrey/FileSaver.js/5ed507ef8aa53d8ecfea96d96bc7214cd2476fd2/FileSaver.min.js"></script>
     <!-- <script src="../javascript/xlsx.min.js" type="text/javascript"></script> -->
 

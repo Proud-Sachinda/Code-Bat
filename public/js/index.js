@@ -1,5 +1,6 @@
 $(document).ready(() => {
     alert('PLEASE NOTE\n\nPlease save the sheet that will be used as Sheet1')
+    
 
     if (window.File && window.FileReader && window.FileList && window.Blob) {
 
@@ -89,6 +90,7 @@ $(document).ready(() => {
                         };
                         csvArr.push(obj);
                     }
+                    $("#getResults").prop("disabled", false);
                     
                 }, (e)=>{
                     console.log(e)
@@ -97,43 +99,79 @@ $(document).ready(() => {
                 alert('no file selected')
             }
         });
+        //displaying output as pop up 
+        // $(".trigger_popup_fricc").click(function(){
+        //     $('.hover_bkgr_fricc').show();
+        // });
+        // $('.hover_bkgr_fricc').click(function(){
+        //     $('.hover_bkgr_fricc').hide();
+        // });
+        $('.popupCloseButton').click(function(){
+            $('.hover_bkgr_fricc').hide();
+        });
+
         getResults.click(()=>{
             //to add Gant Chart plotting functionality 
-            let csv = convertArrayOfObjectsToCSV({
-                data: csvArr
-            });
-            console.log(csv)
-            // var data = [
-            //     { "start": "4/1/2015 9:00:00", "end": "4/1/2015 9:30:00", "task": "Planning" },
-            //     { "start": "4/1/2015 9:30:00", "end": "4/1/2015 10:30:00", "task": "Development" },
-            //     { "start": "4/1/2015 10:30:00", "end": "4/1/2015 10:45:00", "task": "QE" }
-            //   ];
-
-            //clear output div
-            $("#example").empty();
-            let data = csvArr;
+            // $("#example").empty();
+            // let data = csvArr;
               
-              var colorScale = new Plottable.Scales.Color();
+            //   var colorScale = new Plottable.Scales.Color();
               
-              var xScale = new Plottable.Scales.Time();
-              var xAxis = new Plottable.Axes.Time(xScale, "bottom");
+            //   var xScale = new Plottable.Scales.Time();
+            //   var xAxis = new Plottable.Axes.Time(xScale, "bottom");
               
-              var yScale = new Plottable.Scales.Category();
-              var yAxis = new Plottable.Axes.Category(yScale, "left");
+            //   var yScale = new Plottable.Scales.Category();
+            //   var yAxis = new Plottable.Axes.Category(yScale, "left");
               
-              var plot = new Plottable.Plots.Rectangle()
-                .x(function(d) { return new Date(d.start); }, xScale)
-                .x2(function(d) { return new Date(d.end); })
-                .y(function(d) { return d.task; }, yScale)
-                .attr("fill", function(d) { return d.task; }, colorScale)
-                .addDataset(new Plottable.Dataset(data));
+            //   var plot = new Plottable.Plots.Rectangle()
+            //     .x(function(d) { return new Date(d.start); }, xScale)
+            //     .x2(function(d) { return new Date(d.end); })
+            //     .y(function(d) { return d.task; }, yScale)
+            //     .attr("fill", function(d) { return d.task; }, colorScale)
+            //     .addDataset(new Plottable.Dataset(data));
               
-              var chart = new Plottable.Components.Table([
-                [yAxis, plot],
-                [null, xAxis]
-              ]);
-              
-              chart.renderTo("svg#example");
+            //   var chart = new Plottable.Components.Table([
+            //     [yAxis, plot],
+            //     [null, xAxis]
+            //   ]);
+            
+            
+             // chart.renderTo("svg#outputSVG");
+             Highcharts.ganttChart('outputDiv', {
+                 title: {
+                     text: 'Example Gannt Chart'
+                 },
+                 series: [{
+                     name: 'Project 1',
+                     data: [
+                         {
+                             id: 's',
+                             name: 'Start Prototype',
+                             start: Date.UTC(2014, 10,10),
+                             end: Date.UTC(2014, 10, 20)
+                         },
+                         {
+                            id: 'b',
+                            name: 'Develop',
+                            start: Date.UTC(2014, 10,20),
+                            end: Date.UTC(2014, 10, 25)
+                        },
+                        {
+                            id: 'a',
+                            name: 'Run Acceptance Tests',
+                            start: Date.UTC(2014, 10,23),
+                            end: Date.UTC(2014, 10, 26)
+                        },
+                        {
+                            name: 'Test Prototype',
+                            start: Date.UTC(2014, 10,17),
+                            end: Date.UTC(2014, 10, 29),
+                            dependency: ['a', 'b']
+                        },
+                     ]
+                 }]
+             });
+             $('.hover_bkgr_fricc').show();
 
         })
 
@@ -174,24 +212,58 @@ $(document).ready(() => {
 
                 let select = document.getElementById('exportAs');
                 let selectedOption = select.options[select.selectedIndex].value;
-                let theOutput = document.getElementById('output');
+                let theOutput = document.getElementById('outputSVG');
 
                 switch (selectedOption) {
                     case "pdf":
-                        doc.fromHTML(theOutput, 20, 20, {
-                            'width': 170,
-                            'elementHandlers': specialElementHandlers
-                        });
-                        
-                        var fileName = file.name;
-                        var res = fileName.split(".");
+                        // doc.fromHTML(theOutput, 20, 20, {
+                        //     'width': 170,
+                        //     'elementHandlers': specialElementHandlers
+                        // });
+                        const svgElement = document.getElementById('outputSVG');
+                        let pdf = new jsPDF();
+                        svgElementToPdf(svgElement, pdf, {
+                        scale: 72/96, // this is the ratio of px to pt units
+                        removeInvalid: true // this removes elements that could not be translated to pdf from the source svg
+                    });
+                    pdf.output('datauri');
+                        // const width = 300, height = 200;
 
-                        doc.save(res[0] + ".pdf");
+                        // // create a new jsPDF instance
+                        // const pdf = new jsPDF('l', 'pt', [width, height]);
+
+                        // // render the svg element
+                        // svg2pdf(svgElement, pdf, {
+                        //     xOffset: 0,
+                        //     yOffset: 0,
+                        //     scale: 1
+                        // });
+
+                        // // get the data URI
+                        // const uri = pdf.output('datauristring');
+
+                        // // or simply safe the created pdf
+                        // pdf.save('myPDF.pdf');
+                        
+                        // var fileName = file.name;
+                        // var res = fileName.split(".");
+
+                        // doc.save(res[0] + ".pdf");
                         break;
 
                     case "png":
-                        let element = document.getElementById('output');
+                        let element = document.getElementById('outputHalf');
                         html2canvas(element).then((canvas)=>{
+                            // var fileName = file.name;
+                            // var res = fileName.split(".");
+                            // if (navigator.userAgent.indexOf("MSIE ") > 0 || navigator.userAgent.match(/Trident.*IV\:11\./)){
+                            //     let blob = canvas.msToBlob();
+                            //     window.navigator.msSaveBlob(blob,res[0]+"png")
+                            // }else{
+                            //     $("#test").attr("href", canvas.toDataURL("image/png"));
+                            //     $("#test").attr("download",res[0]+ 'png');
+                            //     $("#test")[0].click();
+                            // }
                         	let base64Image = canvas.toDataURL("image/png");
                         	var block = base64Image.split(";");
 			    			var mimeType  = block[0].split(":")[1];
@@ -203,6 +275,7 @@ $(document).ready(() => {
 
                         	window.saveAs(canvasBlob, res[0]+ ".png");
                         })
+                        //saveSvgAsPng(document.getElementById("outputSVG"), "diagram.png");
                         break;
 
                     case "Download As:":
