@@ -1,4 +1,5 @@
 $(document).ready(() => {
+    alert('PLEASE NOTE\n\nPlease save the sheet that will be used as Sheet1')
 
     if (window.File && window.FileReader && window.FileList && window.Blob) {
 
@@ -11,6 +12,7 @@ $(document).ready(() => {
         let updateBtn = $("#updateBtn")
         let file;
         let workBook, excelIO;
+        let csvArr;
 
         customButton.click(() => {
             $('#file').click();
@@ -43,6 +45,10 @@ $(document).ready(() => {
 
         //uploading the file for processing
         uploadButton.click(() => {
+            let c = document.getElementById('output').children;
+            if (c.length !== 0){
+                document.getElementById('output').innerHTML = "";
+            }
             if (file) {
 
                 /*DO NOT REMOVE THIS CODE AS YET. IN CASE THE SPREADJS THINNGING DOES NOT WORK */
@@ -66,8 +72,24 @@ $(document).ready(() => {
                 excelIO = new GC.Spread.Excel.IO();
                 excelIO.open(file, (json)=>{
                     let workBookObj= json;
+                    
                     workBook.fromJSON(workBookObj);
-                    workBook.setActiveSheet("SalesOrders");
+                   // console.log(workBook)
+                    workBook.setActiveSheet("Sheet1");
+                    let jsonStr = JSON.parse(JSON.stringify(workBook.sheets["1"]))
+                    let rowCount = jsonStr.rows.length;
+                    csvArr = [];
+                    let obj = null;
+                    for(let i = 1; i < rowCount; i++){
+                       // console.log(jsonStr.data.dataTable[i])
+                        obj = {
+                            task: jsonStr.data.dataTable[i][0].value,
+                            start: jsonStr.data.dataTable[i][1].value,
+                            end: jsonStr.data.dataTable[i][2].value
+                        };
+                        csvArr.push(obj);
+                    }
+                    
                 }, (e)=>{
                     console.log(e)
                 })
@@ -77,6 +99,42 @@ $(document).ready(() => {
         });
         getResults.click(()=>{
             //to add Gant Chart plotting functionality 
+            let csv = convertArrayOfObjectsToCSV({
+                data: csvArr
+            });
+            console.log(csv)
+            // var data = [
+            //     { "start": "4/1/2015 9:00:00", "end": "4/1/2015 9:30:00", "task": "Planning" },
+            //     { "start": "4/1/2015 9:30:00", "end": "4/1/2015 10:30:00", "task": "Development" },
+            //     { "start": "4/1/2015 10:30:00", "end": "4/1/2015 10:45:00", "task": "QE" }
+            //   ];
+
+            //clear output div
+            $("#example").empty();
+            let data = csvArr;
+              
+              var colorScale = new Plottable.Scales.Color();
+              
+              var xScale = new Plottable.Scales.Time();
+              var xAxis = new Plottable.Axes.Time(xScale, "bottom");
+              
+              var yScale = new Plottable.Scales.Category();
+              var yAxis = new Plottable.Axes.Category(yScale, "left");
+              
+              var plot = new Plottable.Plots.Rectangle()
+                .x(function(d) { return new Date(d.start); }, xScale)
+                .x2(function(d) { return new Date(d.end); })
+                .y(function(d) { return d.task; }, yScale)
+                .attr("fill", function(d) { return d.task; }, colorScale)
+                .addDataset(new Plottable.Dataset(data));
+              
+              var chart = new Plottable.Components.Table([
+                [yAxis, plot],
+                [null, xAxis]
+              ]);
+              
+              chart.renderTo("svg#example");
+
         })
 
         //update the user's changes on the workbook
@@ -88,7 +146,7 @@ $(document).ready(() => {
                     excelIO.open(file, (json)=>{
                     
                         workBook.fromJSON(json);
-                        workBook.setActiveSheet("SalesOrders");
+                        workBook.setActiveSheet("Sheet1");
                     }, (e)=>{
                         console.log(e)
                     })
@@ -203,6 +261,37 @@ $(document).ready(() => {
         alert('The File APIs are not fully supported in this browser');
     }
 })
+//convert array of obbjects to csv
+function convertArrayOfObjectsToCSV(args) {
+    var result, ctr, keys, columnDelimiter, lineDelimiter, data;
+
+    data = args.data || null;
+    if (data == null || !data.length) {
+        return null;
+    }
+
+    columnDelimiter = args.columnDelimiter || ',';
+    lineDelimiter = args.lineDelimiter || '\n';
+
+    keys = Object.keys(data[0]);
+
+    result = '';
+    result += keys.join(columnDelimiter);
+    result += lineDelimiter;
+
+    data.forEach(function(item) {
+        ctr = 0;
+        keys.forEach(function(key) {
+            if (ctr > 0) result += columnDelimiter;
+
+            result += item[key];
+            ctr++;
+        });
+        result += lineDelimiter;
+    });
+
+    return result;
+}
 
 function openNav() {
     document.getElementById("mySidenav").style.width = "250px";
