@@ -1,6 +1,6 @@
 $(document).ready(() => {
     // alert('PLEASE NOTE\n\nPlease save the sheet that will be used as Sheet1')
-   // $('#rules').show();
+    $('#rules').show();
     if (window.File && window.FileReader && window.FileList && window.Blob) {
 
         let customButton = $('#customButton');
