@@ -1,6 +1,6 @@
 $(document).ready(() => {
     // alert('PLEASE NOTE\n\nPlease save the sheet that will be used as Sheet1')
-    $('#rules').show();
+   // $('#rules').show();
     if (window.File && window.FileReader && window.FileList && window.Blob) {
 
         let customButton = $('#customButton');
@@ -57,20 +57,36 @@ $(document).ready(() => {
                     let rowCount = jsonStr.rows.length;
                     csvArr = [];
                     let obj = null;
+                    let end = new Date();
+                    let start = new Date();
+                    
                     for(let i = 1; i < rowCount; i++){
-                       // console.log(jsonStr.data.dataTable[i])
-                       let sYear = jsonStr.data.dataTable[i][1].value.split("-")[0];
-                       let sMonth = jsonStr.data.dataTable[i][1].value.split("-")[1];
-                       let sDay = jsonStr.data.dataTable[i][1].value.split("-")[2];
+                        //console.log(jsonStr.data.dataTable[i])
+                        start.setUTCHours(9);
+                        start.setUTCMinutes(Math.floor(Math.random()*150));
+                        start.setUTCSeconds(0);
+                        start.setUTCMilliseconds(0);
 
-                       let eYear = jsonStr.data.dataTable[i][2].value.split("-")[0];
-                       let eMonth = jsonStr.data.dataTable[i][2].value.split("-")[1];
-                       let eDay = jsonStr.data.dataTable[i][2].value.split("-")[2];
+                        let s =0;
+                        for(let k = 1; k <=3; k++){
+                            if (jsonStr.data.dataTable[i][k]!== undefined){
+                                 s+=jsonStr.data.dataTable[i][k].value ;
+                               // console.log(s)
+                            }
+                            
+                        }
+
+    
+                    
+                        end.setUTCHours(9);
+                        end.setUTCMinutes(s);
+                        end.setUTCSeconds(0);
+                        end.setUTCMilliseconds(0);
                         obj = {
                             id: i,
                             name: jsonStr.data.dataTable[i][0].value,
-                            start:Date.UTC(sYear, sMonth, sDay),
-                            end: Date.UTC(eYear, eMonth, eDay)
+                            start:start.getTime(),
+                            end: end.getTime()
                         };
                         csvArr.push(obj);
                     }
